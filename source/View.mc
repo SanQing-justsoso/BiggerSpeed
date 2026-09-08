@@ -4,6 +4,7 @@
 // 右半下：实时速度小数位 + 单位
 // 整格背景随当前速度区间变色（热到冷）
 import Toybox.Activity;
+import Toybox.Application;
 import Toybox.Graphics;
 import Toybox.Lang;
 import Toybox.System;
@@ -22,8 +23,15 @@ class BiggerSpeedView extends WatchUi.DataField {
     function initialize() {
         DataField.initialize();
 
-        // 硬编码默认档位（热到冷）
-        _thresholds = [10, 20, 30, 40, 50, 60];
+        // 从码表设置读取 6 个区间阈值（可自定义），默认与原来一致
+        _thresholds = [
+            readThreshold("Zone1Max", 10),
+            readThreshold("Zone2Max", 20),
+            readThreshold("Zone3Max", 30),
+            readThreshold("Zone4Max", 40),
+            readThreshold("Zone5Max", 50),
+            readThreshold("Zone6Max", 60)
+        ];
         _colors = [
             0xFF0000,  // 档1 0-10 红
             0xFF7F00,  // 档2 10-20 橙
@@ -44,6 +52,15 @@ class BiggerSpeedView extends WatchUi.DataField {
         _currentSpeed = info.currentSpeed;
         _averageSpeed = info.averageSpeed;
         return null;
+    }
+
+    // 读取数字型设置项，转 Float；非数字/未设置时回退默认值
+    function readThreshold(key as String, def as Number) as Float {
+        var v = Application.Properties.getValue(key);
+        if (v instanceof Lang.Number) {
+            return (v as Lang.Number).toFloat();
+        }
+        return def.toFloat();
     }
 
     // 当前速度所在档位索引 0~6

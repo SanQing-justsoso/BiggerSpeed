@@ -28,6 +28,25 @@
 
 文字颜色自适应：浅色背景用深字、深色背景用白字，任何区间都清晰可读。
 
+## 自定义速度区间
+
+6 个区间分界阈值（对应上表 7 档的边界）可以在码表上直接改，不用重新编译：
+
+**骑行活动 → 数据页 → 长按该数据字段 → 进入设置 → Connect IQ 设置**
+
+| 设置项 | 含义 | 默认 |
+|--------|------|------|
+| Zone 1 max | 第 1 档（红）上限 | 10 |
+| Zone 2 max | 第 2 档（橙）上限 | 20 |
+| Zone 3 max | 第 3 档（黄）上限 | 30 |
+| Zone 4 max | 第 4 档（绿）上限 | 40 |
+| Zone 5 max | 第 5 档（青）上限 | 50 |
+| Zone 6 max | 第 6 档（蓝）上限 | 60 |
+
+第 7 档（紫）自动覆盖 60 以上。阈值单位跟随码表当前单位（公制 km/h / 英制 mph）。
+
+实现：`resources/settings/properties.xml` 定义属性默认值，`resources/settings/settings.xml` 定义设置 UI，源码 `View.mc` 里用 `Application.Properties.getValue()` 读取。
+
 ## 技术要点
 
 - 语言：Monkey C（Garmin Connect IQ SDK）
@@ -47,7 +66,10 @@ BiggerSpeed/
 │   └── View.mc               # 核心逻辑与绘制
 ├── resources/
 │   ├── drawables/            # 图标
-│   └── strings/              # 应用名等字符串
+│   ├── settings/             # 自定义设置（速度区间阈值）
+│   │   ├── properties.xml    # 属性默认值
+│   │   └── settings.xml      # 设置 UI 定义
+│   └── strings/              # 应用名 + 设置项标题
 └── make_test_fit.py          # 生成测试 FIT（7 档各 10 秒递增）
 ```
 

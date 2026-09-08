@@ -1,0 +1,22 @@
+<settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
+
+    <setting propertyKey="@Properties.Zone1Max" title="@Strings.Zone1MaxTitle">
+        <settingConfig type="numeric" />
+    </setting>
+    <setting propertyKey="@Properties.Zone2Max" title="@Strings.Zone2MaxTitle">
+        <settingConfig type="numeric" />
+    </setting>
+    <setting propertyKey="@Properties.Zone3Max" title="@Strings.Zone3MaxTitle">
+        <settingConfig type="numeric" />
+    </setting>
+    <setting propertyKey="@Properties.Zone4Max" title="@Strings.Zone4MaxTitle">
+        <settingConfig type="numeric" />
+    </setting>
+    <setting propertyKey="@Properties.Zone5Max" title="@Strings.Zone5MaxTitle">
+        <settingConfig type="numeric" />
+    </setting>
+    <setting propertyKey="@Properties.Zone6Max" title="@Strings.Zone6MaxTitle">
+        <settingConfig type="numeric" />
+    </setting>
+
+</settings>

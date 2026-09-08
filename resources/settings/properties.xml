@@ -1,0 +1,11 @@
+<properties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
+
+    <!-- 7 档速度区间的 6 个分界阈值（单位：当前码表单位，公制 km/h / 英制 mph） -->
+    <property id="Zone1Max" type="number">10</property>
+    <property id="Zone2Max" type="number">20</property>
+    <property id="Zone3Max" type="number">30</property>
+    <property id="Zone4Max" type="number">40</property>
+    <property id="Zone5Max" type="number">50</property>
+    <property id="Zone6Max" type="number">60</property>
+
+</properties>

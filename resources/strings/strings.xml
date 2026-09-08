@@ -1,3 +1,10 @@
 <strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
     <string id="AppName">BiggerSpeed</string>
+
+    <string id="Zone1MaxTitle">Zone 1 max (km/h)</string>
+    <string id="Zone2MaxTitle">Zone 2 max (km/h)</string>
+    <string id="Zone3MaxTitle">Zone 3 max (km/h)</string>
+    <string id="Zone4MaxTitle">Zone 4 max (km/h)</string>
+    <string id="Zone5MaxTitle">Zone 5 max (km/h)</string>
+    <string id="Zone6MaxTitle">Zone 6 max (km/h)</string>
 </strings>
