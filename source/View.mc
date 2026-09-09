@@ -13,7 +13,7 @@ import Toybox.WatchUi;
 
 class BiggerSpeedView extends WatchUi.DataField {
 
-    private var _thresholds as Array;   // 6 个阈值（当前单位速度）
+    private var _thresholds as Array = [10, 20, 30, 40, 50, 60] as Array;   // 6 个阈值（当前单位速度），默认值兜底
     private var _colors as Array;       // 7 个颜色 0xRRGGBB
     private var _currentSpeed as Float?; // m/s
     private var _averageSpeed as Float?; // m/s
@@ -24,14 +24,8 @@ class BiggerSpeedView extends WatchUi.DataField {
         DataField.initialize();
 
         // 从码表设置读取 6 个区间阈值（可自定义），默认与原来一致
-        _thresholds = [
-            readThreshold("Zone1Max", 10),
-            readThreshold("Zone2Max", 20),
-            readThreshold("Zone3Max", 30),
-            readThreshold("Zone4Max", 40),
-            readThreshold("Zone5Max", 50),
-            readThreshold("Zone6Max", 60)
-        ];
+        loadThresholds();
+
         _colors = [
             0xFF0000,  // 档1 0-10 红
             0xFF7F00,  // 档2 10-20 橙
@@ -61,6 +55,23 @@ class BiggerSpeedView extends WatchUi.DataField {
             return (v as Lang.Number).toFloat();
         }
         return def.toFloat();
+    }
+
+    // 重新读取 6 个区间阈值（initialize 与 onSettingsChanged 共用）
+    private function loadThresholds() as Void {
+        _thresholds = [
+            readThreshold("Zone1Max", 10),
+            readThreshold("Zone2Max", 20),
+            readThreshold("Zone3Max", 30),
+            readThreshold("Zone4Max", 40),
+            readThreshold("Zone5Max", 50),
+            readThreshold("Zone6Max", 60)
+        ];
+    }
+
+    // 用户在码表上改完设置后立即重读阈值（API 3.2+ on-device settings）
+    function onSettingsChanged() as Void {
+        loadThresholds();
     }
 
     // 当前速度所在档位索引 0~6

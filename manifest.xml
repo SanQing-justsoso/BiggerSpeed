@@ -7,8 +7,13 @@
         launcherIcon="@Drawables.LauncherIcon"
         minApiLevel="3.2.0">
         <iq:products>
-            <iq:product id="edge840"/>
             <iq:product id="edge540"/>
+            <iq:product id="edge840"/>
+            <iq:product id="edgemtb"/>
+            <iq:product id="edge1040"/>
+            <iq:product id="edge550"/>
+            <iq:product id="edge850"/>
+            <iq:product id="edge1050"/>
         </iq:products>
         <iq:permissions>
             <iq:uses-permission id="Sensor"/>
